@@ -43,5 +43,27 @@ public class Main {
 
 
         g.print();
+        System.out.println("Num Vertices: " + g.numVertices());
+        System.out.println("Num Edges: " + g.numEdges());
+        System.out.println("Edge between A and B: " + g.getEdge("A","B"));
+        System.out.println("Edge between K and L: " + g.getEdge("K","L"));
+
+        String[] ans = g.endVertices("19");
+        System.out.println("Vertices connected by Edge 4: " + ans[0] + ", " + ans[1]);
+
+        System.out.println("Vertex opposite Vertex I and Edge 14: " + g.opposite("I","14"));
+        System.out.println("Vertex opposite Vertex N and Edge 20: " + g.opposite("N","20"));
+
+        System.out.println("In degree of G: " + g.inDegree("G"));
+        System.out.println("In degree of G: " + g.outDegree("G"));
+        System.out.println("In degree of K: " + g.inDegree("K"));
+        System.out.println("In degree of K: " + g.outDegree("K"));
+
+
+        System.out.println("All vertices: " + g.vertices());
+        System.out.println("All edges: " + g.edges());
+        g.removeVertex("I");
+        System.out.println("All vertices: " + g.vertices());
+        System.out.println("All edges: " + g.edges());
     }
 }
