@@ -63,6 +63,7 @@ public class Main {
         System.out.println("All vertices: " + g.vertices());
         System.out.println("All edges: " + g.edges());
         g.removeVertex("I");
+//        g.removeEdge("14");
         System.out.println("All vertices: " + g.vertices());
         System.out.println("All edges: " + g.edges());
     }

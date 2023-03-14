@@ -160,13 +160,6 @@ public class MyGraph {
                 vertex2 = v;
             }
         }
-//        Vertex vertex1 = new Vertex(v1);
-//        Vertex vertex2 = new Vertex(v2);
-//        Edge edge = new Edge(edgeName);
-
-
-//        System.out.println("Contains v1: " + graph.containsKey(vertex1));
-//        System.out.println("Contains v2: " + graph.containsKey(vertex2));
         ArrayList<GraphPairing> v1EdgeList = graph.get(vertex1);
         if(v1EdgeList == null){
             graph.put(vertex1,new ArrayList<>());
@@ -193,13 +186,50 @@ public class MyGraph {
 //        graph.put(vertex2,edgeV2List);
     }
     public void removeVertex(String vertex){
-        Vertex v = getVertexFromString(vertex);
-        ArrayList<GraphPairing> gps = graph.get(v);
-        graph.remove(v);
+        Set<Vertex> vertices = graph.keySet();
+        Vertex ver = getVertexFromString(vertex);
+        graph.remove(ver);
+        for(Vertex v: vertices){
+            ArrayList<GraphPairing> gps = graph.get(v);
+            if(gps!=null){
+                for(GraphPairing gp: gps){
+                    graph.remove(gp.getEdge()); //error
+                }
+            }
+        }
 
     }
     public void removeEdge(String edge){
+        Edge e = getEdgeFromString(edge);
+//        for(){
+//
+//        }
 
+//        Set<Vertex> vertices = graph.keySet();
+//        Vertex vertex1 = null;
+//        Vertex vertex2 = null;
+//        Edge edge = new Edge(edgeName);
+//        for(Vertex v: vertices){
+//            if(v.compareTo(new Vertex(v1))==0) {
+//                vertex1 = v;
+//            }
+//            if(v.compareTo(new Vertex(v2))==0) {
+//                vertex2 = v;
+//            }
+//        }
+//        ArrayList<GraphPairing> v1EdgeList = graph.get(vertex1);
+//        if(v1EdgeList == null){
+//            graph.put(vertex1,new ArrayList<>());
+//        }
+//        graph.get(vertex1).add(new GraphPairing(vertex2,edge));
+//
+//        ArrayList<GraphPairing> v2EdgeList = graph.get(vertex2);
+//        if(v2EdgeList == null){
+//            graph.put(vertex2,new ArrayList<>());
+//        }
+//        graph.get(vertex2).add(new GraphPairing(vertex1,edge));
+//
+//        numEdges++;
     }
 
 
