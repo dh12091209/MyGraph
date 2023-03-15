@@ -188,22 +188,34 @@ public class MyGraph {
     public void removeVertex(String vertex){
         Set<Vertex> vertices = graph.keySet();
         Vertex ver = getVertexFromString(vertex);
-        graph.remove(ver);
+
         for(Vertex v: vertices){
             ArrayList<GraphPairing> gps = graph.get(v);
             if(gps!=null){
                 for(GraphPairing gp: gps){
-                    graph.remove(gp.getEdge()); //error
+                    if(gp.getVertex().equals(ver)){
+                        graph.get(v).remove(gp);
+                    }
                 }
             }
         }
+        graph.remove(ver);
 
     }
     public void removeEdge(String edge){
         Edge e = getEdgeFromString(edge);
-//        for(){
-//
-//        }
+        Set<Vertex> vertices = graph.keySet();
+
+        for(Vertex v: vertices){
+            ArrayList<GraphPairing> gps = graph.get(v);
+            if(gps!=null){
+                for(GraphPairing gp: gps){
+                    if(gp.getEdge().equals(edge)){
+                        graph.get(v).remove(gp);
+                    }
+                }
+            }
+        }
 
 //        Set<Vertex> vertices = graph.keySet();
 //        Vertex vertex1 = null;
