@@ -1,15 +1,13 @@
 import com.sun.source.tree.NewArrayTree;
 
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class MyGraph {
     private int numVertices;
     private int numEdges;
     private HashMap<Vertex,ArrayList<GraphPairing>> graph;
+    static Stack<GraphPairing> stack = new Stack<GraphPairing>();
 
     public MyGraph(){
         numEdges = 0;
@@ -210,7 +208,7 @@ public class MyGraph {
             ArrayList<GraphPairing> gps = graph.get(v);
             if(gps!=null){
                 for(GraphPairing gp: gps){
-                    if(gp.getEdge().equals(edge)){
+                    if(gp.getEdge().equals(e)){
                         graph.get(v).remove(gp);
                     }
                 }
@@ -243,7 +241,17 @@ public class MyGraph {
 //
 //        numEdges++;
     }
+    public void depthFirstSearch(String startVertex){
+        Set<Vertex> vertices = graph.keySet();
+        Vertex ver = getVertexFromString(startVertex);
 
+    }
+    public void findPath(String startVertex, String endVertex){
+        Vertex startVer = getVertexFromString(startVertex);
+        Vertex endVer = getVertexFromString(endVertex);
+
+
+    }
 
 
 
