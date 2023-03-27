@@ -9,10 +9,16 @@ public class MyGraph {
     private HashMap<Vertex,ArrayList<GraphPairing>> graph;
     static Stack<GraphPairing> stack = new Stack<GraphPairing>();
 
+    // Andy added
+    //private boolean[] visited;
+    private HashMap<Vertex,Boolean> visited; 
+
     public MyGraph(){
         numEdges = 0;
         numVertices = 0;
         graph = new HashMap<>();
+        // Andy added
+        visited = new HashMap<>();
     }
 
     public int numVertices(){
@@ -23,10 +29,20 @@ public class MyGraph {
         return numEdges;
     }
 
+    // Andy added
+    public void initVisited() {
+        Set<Vertex> vertexList = graph.keySet();
+        for(Vertex v: vertexList){
+            visited.put(v,false);
+        }
+    }
+
     public void insertVertex(String name){
         Vertex temp = new Vertex(name);
         //assume, for now, the given name does NOT exist in the map
         graph.put(temp,null);
+        // Andy added
+        visited.put(temp,false);
         numVertices++;
     }
 
@@ -246,11 +262,48 @@ public class MyGraph {
         Vertex ver = getVertexFromString(startVertex);
 
     }
-    public void findPath(String startVertex, String endVertex){
+
+    //modified
+    public String findPath(String startVertex, String endVertex){
+        ArrayList<GraphPairing> path = new ArrayList<GraphPairing>();
+        findpathDetail(startVertex,endVertex,path);
+        String returnPath = "";
+        returnPath += startVertex + " -> ";
+        for(GraphPairing gp:path){
+            returnPath += gp.getEdge().getName() + " -> " + gp.getVertex().getName() + " -> ";
+        }
+        
+        return returnPath;
+    }
+    private Boolean findpathDetail(String startVertex, String endVertex, ArrayList<GraphPairing> path){
         Vertex startVer = getVertexFromString(startVertex);
         Vertex endVer = getVertexFromString(endVertex);
 
+        // System.out.println("Start vertex: " + startVer.getName());
+        // System.out.println("End vertex: " + endVer.getName());
+        visited.put(startVer, true);
+        ArrayList<GraphPairing> v1EdgeList = graph.get(startVer);
 
+        if(v1EdgeList == null){
+            return false;
+        }
+
+        for(GraphPairing gp: v1EdgeList){
+            Vertex v = gp.getVertex();
+            if(v.equals(endVer)){
+                path.add(gp);
+                return true;
+            }
+            if(!visited.getOrDefault(v,false)){
+                path.add(gp);
+                if(findpathDetail(v.getName(),endVertex,path)){
+                    return true;
+                }
+                path.remove(gp);
+            }
+        }
+
+        return false;
     }
 
 

@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Main {
     public static void main(String[] args) {
         MyGraph g = new MyGraph();
@@ -40,7 +42,8 @@ public class Main {
         g.insertEdge("M","N","20");
         g.insertEdge("O","P","21");
 
-
+        // andy added
+        g.initVisited();
 
         g.print();
         System.out.println("Num Vertices: " + g.numVertices());
@@ -62,9 +65,15 @@ public class Main {
 
         System.out.println("All vertices: " + g.vertices());
         System.out.println("All edges: " + g.edges());
-        g.removeVertex("I");
-        g.removeEdge("11");
-        System.out.println("All vertices: " + g.vertices());
-        System.out.println("All edges: " + g.edges());
+        // g.removeVertex("I");
+        // g.removeEdge("11");
+        // System.out.println("All vertices: " + g.vertices());
+        // System.out.println("All edges: " + g.edges());
+
+
+        System.out.println(g.findPath("A","P"));
+
+
+
     }
 }
