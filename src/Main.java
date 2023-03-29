@@ -71,7 +71,7 @@ public class Main {
         // System.out.println("All edges: " + g.edges());
 
 
-        System.out.println(g.findPath("A","P"));
+        System.out.println(g.findPath("A","F"));
 
 
 

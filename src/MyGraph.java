@@ -272,7 +272,7 @@ public class MyGraph {
         for(GraphPairing gp:path){
             returnPath += gp.getEdge().getName() + " -> " + gp.getVertex().getName() + " -> ";
         }
-        
+        returnPath = returnPath.substring(0,returnPath.length()-4);
         return returnPath;
     }
     private Boolean findpathDetail(String startVertex, String endVertex, ArrayList<GraphPairing> path){
